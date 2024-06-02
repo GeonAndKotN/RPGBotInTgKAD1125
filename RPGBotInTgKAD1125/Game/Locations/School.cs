@@ -14,7 +14,8 @@ namespace MyBot.Game
                 Buttons.LearnAgi,
                 Buttons.LearnIntel,
                 Buttons.LearnPhy,
-                Buttons.GoHome,
+                Buttons.GoHome, 
+                
             };
             return result;
         }

@@ -53,7 +53,7 @@ namespace MyBot.Game
             builder.Append(Name);
             builder.Append("\nУровень: ");
             builder.Append(Level);
-            builder.Append("\nФизуха: ");
+            builder.Append("\nСтойкость: ");
             builder.Append(Phy);
             builder.Append("\nСила: ");
             builder.Append(Str);
