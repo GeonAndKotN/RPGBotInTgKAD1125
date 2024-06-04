@@ -7,14 +7,14 @@ namespace MyBot.DataBase
 {
     public class SQLManager
     {
-        const string DbUser = "SuperKAD";
-        const string DbName = "mydb";
-        const string DbPass = "1234";
+        const string DbUser = "student";
+        const string DbName = "BotTg1125KAD";
+        const string DbPass = "student";
 
-        //server=192.168.200.13;user=student;password=student;database=dbkad1125rpgbothmp чтобы в базе ппк было всё хорошо, надеюсь тут MySQL Workbench не будет кусаться
+        //server=192.168.200.13;user=student;password=student;database=BotTg1125KAD чтобы в базе ппк было всё хорошо, надеюсь тут MySQL Workbench не будет кусаться
 
-        public readonly string ConnectionString =
-                $"server=localhost;" +
+        public readonly string Connectionstring =
+                $"server=192.168.200.13;" +
                 $"user={DbUser};" +
                 $"database={DbName};" +
                 $"password={DbPass}";
@@ -27,17 +27,17 @@ namespace MyBot.DataBase
         {
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
-                    var saveCommand = $"UPDATE `{DbName}`.`Users` SET `State` = {(int)data.State} WHERE User_id = {data.Id}";
+                    var saveCommand = $"UPDATE `{DbName}`.`users` SET `State` = {(int)data.State} WHERE User_id = {data.Id}";
                     using (var reader = new MySqlCommand(saveCommand, connection).ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            for (int i = 0; i < data.Characters.Count; i++)
+                            for (int i = 0; i < data.characters.Count; i++)
                             {
-                                Save(data.Characters[i]);
+                                Save(data.characters[i]);
                             }
                         }
                     }
@@ -54,19 +54,19 @@ namespace MyBot.DataBase
         {
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
-                    var updateCharCommand = $"UPDATE {DbName}. Characters SET " +
+                    var updateCharCommand = $"UPDATE {DbName}. characters SET " +
                     $"Name = '{data.Name}', " +
                     $"Level = {data.Level}, " +
                     $"Phy = {data.Phy}, " +
                     $"Str = {data.Str}, " +
                     $"Agi = {data.Agi}, " +
                     $"Intel = {data.Intel}, " +
-                    $"Weapons_Weapon_id = {data.Weapon.Id}, " +
-                    $"Armors_Armor_id = {data.Armor.Id}, " +
-                    $"Potions_Potion_id = {data.Potion.Id}, " +
+                    $"weapons_weapon_id = {data.weapon.Id}, " +
+                    $"armors_armor_id = {data.armor.Id}, " +
+                    $"potions_potion_id = {data.potion.Id}, " +
                     $"State = {(int)data.State}, " +
                     $"Gold = {data.Gold} " +
                     $"WHERE Character_id = {data.Id}";
@@ -85,7 +85,7 @@ namespace MyBot.DataBase
         {
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
                     var command = $"Insert into users Values ({data.Id},{(int)data.State})";
@@ -104,7 +104,7 @@ namespace MyBot.DataBase
         {
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
                     var command = $"Insert into characters Values (" +
@@ -118,9 +118,9 @@ namespace MyBot.DataBase
                         $"{data.Intel}," +
                         $"{(int)data.State}," +
                         $"{data.Gold}," +
-                        $"{data.Armor.Id}," +
-                        $"{data.Weapon.Id}," +
-                        $"{data.Potion.Id})";
+                        $"{data.armor.Id}," +
+                        $"{data.weapon.Id}," +
+                        $"{data.potion.Id})";
                     var reader = new MySqlCommand(command, connection).ExecuteReader();
                     reader.Read();
                     connection.Close();
@@ -140,8 +140,8 @@ namespace MyBot.DataBase
             try
             {
                 var data = new PlayerData { Id = id };
-                var loadUserCommand = $"SELECT * FROM Users WHERE User_id = {id}";
-                using (var connection = new MySqlConnection(ConnectionString))
+                var loadUserCommand = $"SELECT * FROM users WHERE User_id = {id}";
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
                     using (var reader = new MySqlCommand(loadUserCommand, connection).ExecuteReader())
@@ -149,7 +149,7 @@ namespace MyBot.DataBase
                         if (reader.Read())
                         {
                             data.State = (PlayerState)reader.GetInt32("State");
-                            data.Characters = GetCharsForUser(id);
+                            data.characters = GetCharsForUser(id);
                         }
                         else
                         {
@@ -172,11 +172,11 @@ namespace MyBot.DataBase
             var result = new List<CharacterData>();
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
-                    var loadCharactersCommand = $"SELECT * FROM Characters WHERE Owner = {ownerId}";
-                    using (var reader = new MySqlCommand(loadCharactersCommand, connection).ExecuteReader())
+                    var loadcharactersCommand = $"SELECT * FROM characters WHERE Owner = {ownerId}";
+                    using (var reader = new MySqlCommand(loadcharactersCommand, connection).ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -192,9 +192,9 @@ namespace MyBot.DataBase
                                 Intel = reader.GetInt32("Intel"),
                                 Gold = reader.GetInt32("Gold"),
                                 State = (CharacterLocation)reader.GetInt32("State"),
-                                Weapon = GetItem(reader.GetInt32("Weapons_Weapon_id"), ItemSlot.Weapon),
-                                Armor = GetItem(reader.GetInt32("Armors_Armor_id"), ItemSlot.Armor),
-                                Potion = GetItem(reader.GetInt32("Potions_Potion_id"), ItemSlot.Potion),
+                                weapon = GetItem(reader.GetInt32("weapons_weapon_id"), ItemSlot.weapon),
+                                armor = GetItem(reader.GetInt32("armors_armor_id"), ItemSlot.armor),
+                                potion = GetItem(reader.GetInt32("potions_potion_id"), ItemSlot.potion),
                             };
                             result.Add(data);
                         }
@@ -213,11 +213,11 @@ namespace MyBot.DataBase
         {
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
-                    var loadCharactersCommand = $"SELECT * FROM Characters WHERE Character_id = {id}";
-                    using (var reader = new MySqlCommand(loadCharactersCommand, connection).ExecuteReader())
+                    var loadcharactersCommand = $"SELECT * FROM characters WHERE Character_id = {id}";
+                    using (var reader = new MySqlCommand(loadcharactersCommand, connection).ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -233,9 +233,9 @@ namespace MyBot.DataBase
                                 Intel = reader.GetInt32("Intel"),
                                 Gold = reader.GetInt32("Gold"),
                                 State = (CharacterLocation)reader.GetInt32("State"),
-                                Weapon = GetItem(reader.GetInt32("Weapons_Weapon_id"), ItemSlot.Weapon),
-                                Armor = GetItem(reader.GetInt32("Armors_Armor_id"), ItemSlot.Armor),
-                                Potion = GetItem(reader.GetInt32("Potions_Potion_id"), ItemSlot.Potion),
+                                weapon = GetItem(reader.GetInt32("weapons_weapon_id"), ItemSlot.weapon),
+                                armor = GetItem(reader.GetInt32("armors_armor_id"), ItemSlot.armor),
+                                potion = GetItem(reader.GetInt32("potions_potion_id"), ItemSlot.potion),
                             };
                             return data;
                         }
@@ -255,7 +255,7 @@ namespace MyBot.DataBase
             var result = new ItemData { Id = id };
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
                     var loadItemCommand = $"SELECT * FROM {slot}s WHERE {slot}_id = {id}";
@@ -285,10 +285,10 @@ namespace MyBot.DataBase
         {
             try
             {
-                using (var connection = new MySqlConnection(ConnectionString))
+                using (var connection = new MySqlConnection(Connectionstring))
                 {
                     connection.Open();
-                    var command = $"DELETE FROM Characters WHERE Character_id = {id}";
+                    var command = $"DELETE FROM characters WHERE Character_id = {id}";
                     using (var reader = new MySqlCommand(command, connection).ExecuteReader())
                     {
                         reader.Read();

@@ -14,9 +14,9 @@ namespace MyBot.Game
         public int Intel { get; set; } = 1;
         public int Gold { get; set; } = 3;
         public CharacterLocation State { get; set; }
-        public ItemData Weapon { get; set; }
-        public ItemData Armor { get; set; }
-        public ItemData Potion { get; set; }
+        public ItemData weapon { get; set; }
+        public ItemData armor { get; set; }
+        public ItemData potion { get; set; }
         //для сохранения состояний битвы
         public int? CurrentEnemy { get; set; } = null;
 
@@ -38,37 +38,37 @@ namespace MyBot.Game
             Intel = data.Intel;
             Gold = data.Gold;
             State = data.State;
-            Weapon = new ItemData(data.Weapon);
-            Armor = new ItemData(data.Armor);
-            Potion = new ItemData(data.Potion);
+            weapon = new ItemData(data.weapon);
+            armor = new ItemData(data.armor);
+            potion = new ItemData(data.potion);
         }
 
         
         //Эта реализация нужна для более удобного дебага.
         public override string ToString()
         {
-            // StringBuilder это - 
+            // stringBuilder это - 
             var builder = new StringBuilder();
-            builder.Append("Имя: ");
+            builder.Append("💬Имя: ");
             builder.Append(Name);
-            builder.Append("\nУровень: ");
+            builder.Append("\n🧠Уровень: ");
             builder.Append(Level);
-            builder.Append("\nСтойкость: ");
+            builder.Append("\n📙Стойкость: ");
             builder.Append(Phy);
-            builder.Append("\nСила: ");
+            builder.Append("\n📕Сила: ");
             builder.Append(Str);
-            builder.Append("\nЛовкость: ");
+            builder.Append("\n📗Ловкость: ");
             builder.Append(Agi);
-            builder.Append("\nИнтеллект: ");
+            builder.Append("\n📘Интеллект: ");
             builder.Append(Intel);
-            builder.Append("\nРубли: ");
+            builder.Append("\n💳Рубли: ");
             builder.Append(Gold);
-            builder.Append("\nОружие: ");
-            builder.Append(Weapon.Name);
-            builder.Append("\nОдежда: ");
-            builder.Append(Armor.Name);
-            builder.Append("\nЗелье: ");
-            builder.Append(Potion.Name);
+            builder.Append("\n🗡Оружие: ");
+            builder.Append(weapon.Name);
+            builder.Append("\n🪖Одежда: ");
+            builder.Append(armor.Name);
+            builder.Append("\n🍷Зелье: ");
+            builder.Append(potion.Name);
             return builder.ToString();
         }
 

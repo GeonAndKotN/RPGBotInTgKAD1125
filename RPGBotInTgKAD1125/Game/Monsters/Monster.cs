@@ -68,18 +68,17 @@ namespace MyBot.Game
                     return Pudge;
             }
         }
-        // хуйня какая-то почему то виверна впринципе падает
-        public static Monster Pudge => new Monster() { Name = "ПУДГЕ", MaxHealth = 20, Damage = 8, Reward = 3, ImageUrl = "https://dota2.ru/img/heroes/pudge/pudge.png" };
+        public static Monster Pudge => new Monster() { Name = "ПУДГЕ", MaxHealth = 29, Damage = 8, Reward = 6, ImageUrl = "https://dota2.ru/img/heroes/pudge/pudge.png" };
         public static Monster Ghoul => new Monster() { Name = "ГУЛЯШ", MaxHealth = 13, Damage = 3, Reward = 1, ImageUrl = "https://dota2.ru/img/heroes/lifestealer/lifestealer.png" };
-        public static Monster Wiwern => new Monster() { Name = "АЛКОГОЛЬНОЕ ИСПАРЕНИЕ(ещё та тварь)", MaxHealth = 5, Damage = 4, Reward = 1, ImageUrl = "https://dota2.ru/img/heroes/winter_wyvern/winter_wyvern.png" };
-        public static Monster Dino => new Monster() { Name = "ГИГАНТСКИЙ ЯЩЕР", MaxHealth = 16, Damage = 6, Reward = 2, ImageUrl = "https://dota2.ru/img/heroes/primal_beast/primal_beast.png" };
+        public static Monster Wiwern => new Monster() { Name = "АЛКОГОЛЬНОЕ ИСПАРЕНИЕ", MaxHealth = 15, Damage = 2, Reward = 1, ImageUrl = "https://dota2.ru/img/heroes/winter_wyvern/winter_wyvern.png" };
+        public static Monster Dino => new Monster() { Name = "ГИГАНТСКИЙ ЯЩЕР", MaxHealth = 16, Damage = 4, Reward = 2, ImageUrl = "https://dota2.ru/img/heroes/primal_beast/primal_beast.png" };
         public static Monster WrKing => new Monster() { Name = "НЕДОМЁРТВЫЙ ДЕД", MaxHealth = 11, Damage = 5, Reward = 2, ImageUrl = "https://dota2.ru/img/heroes/wraith_king/wraith_king.png" };
         public static Monster Undying => new Monster() { Name = "ЗОМБЕЕЕЕ", MaxHealth = 11, Damage = 4, Reward = 3, ImageUrl = "https://dota2.ru/img/heroes/undying/undying.png" };
         public static Monster Slark => new Monster() { Name = "ОКУНЬ(ЖИВОЙ)", MaxHealth = 12, Damage = 5, Reward = 5, ImageUrl = "https://dota2.ru/img/heroes/slark/slark.png" }; 
         public static Monster MonkeyKing => new Monster() { Name = "СТУДЕНТ, НЕСДАВШИЙ КУРСАЧ", MaxHealth = 11, Damage = 3, Reward = 2, ImageUrl = "https://dota2.ru/img/heroes/monkey_king/monkey_king.png" };
         public static Monster TreantPr => new Monster() { Name = "(НЕ)МУДРЫЙ ДУБ", MaxHealth = 40, Damage = 1, Reward = 4, ImageUrl = "https://dota2.ru/img/heroes/treant_protector/treant_protector.png" }; 
-        public static Monster Sven => new Monster() { Name = "БЕРСЕРК", MaxHealth = 25, Damage = 3, Reward = 9, ImageUrl = "https://dota2.ru/img/heroes/sven/sven.png" };
-        public static Monster Timber => new Monster() { Name = "БЕШЕННЫЙ ЛЕСОРУБ", MaxHealth = 15, Damage = 9, Reward = 6, ImageUrl = "https://dota2.ru/img/heroes/timbersaw/timbersaw.png" };
+        public static Monster Sven => new Monster() { Name = "БЕРСЕРК", MaxHealth = 25, Damage = 3, Reward = 4, ImageUrl = "https://dota2.ru/img/heroes/sven/sven.png" };
+        public static Monster Timber => new Monster() { Name = "БЕШЕННЫЙ ЛЕСОРУБ", MaxHealth = 15, Damage = 9, Reward = 3, ImageUrl = "https://dota2.ru/img/heroes/timbersaw/timbersaw.png" };
         public static Monster Muerta => new Monster() { Name = "МЁРТВАЯ МАТЬ", MaxHealth = 25, Damage = 3, Reward = 4, ImageUrl = "https://dota2.ru/img/heroes/muerta/muerta.png" };
         public static Monster Io => new Monster() { Name = "ЛЕТАЮЩАЯ ОТРЫЖКА", MaxHealth = 15, Damage = 4, Reward = 2, ImageUrl = "https://dota2.ru/img/heroes/io/io.png" };
         

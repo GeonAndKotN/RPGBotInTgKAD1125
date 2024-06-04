@@ -23,9 +23,9 @@ namespace MyBot.Game
     public enum LocationCommand
     {
         //Магаз
-        BuyArmor = 101,
-        BuyWeapon = 102,
-        BuyPotion = 103,
+        Buyarmor = 101,
+        Buyweapon = 102,
+        Buypotion = 103,
 
         //ппк
         LearnStr = 201,
@@ -36,7 +36,7 @@ namespace MyBot.Game
         //Боёвка типо мортал комбат, но пошаговое рпг мочилово
         Attack = 301,
         Defence = 302,
-        UsePotion = 303,
+        Usepotion = 303,
     }
 
     public static class LocationCommandExtensions
@@ -45,9 +45,9 @@ namespace MyBot.Game
         {
             switch (command)
             {
-                case LocationCommand.BuyArmor:
-                case LocationCommand.BuyWeapon:
-                case LocationCommand.BuyPotion:
+                case LocationCommand.Buyarmor:
+                case LocationCommand.Buyweapon:
+                case LocationCommand.Buypotion:
                     return true;
                 default:
                     return false;
@@ -74,7 +74,7 @@ namespace MyBot.Game
             {
                 case LocationCommand.Attack:
                 case LocationCommand.Defence:
-                case LocationCommand.UsePotion:
+                case LocationCommand.Usepotion:
                     return true;
                 default:
                     return false;

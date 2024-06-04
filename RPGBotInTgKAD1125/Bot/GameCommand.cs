@@ -17,9 +17,9 @@ namespace MyBot.Bot
         GoHome = 10,
         //магаз
         GoShop = 100,
-        BuyArmor = 101,
-        BuyWeapon = 102,
-        BuyPotion = 103,
+        Buyarmor = 101,
+        Buyweapon = 102,
+        Buypotion = 103,
         //прокачка
         GoSchool = 200,
         LearnStr = 201,
@@ -32,7 +32,7 @@ namespace MyBot.Bot
         //бой
         Attack = 301,
         Defence = 302,
-        UsePotion = 303,
+        Usepotion = 303,
     }
 
     public static class CommandExtensions
@@ -68,9 +68,9 @@ namespace MyBot.Bot
         {
             result = command switch
             {
-                GameCommand.BuyArmor => LocationCommand.BuyArmor,
-                GameCommand.BuyWeapon => LocationCommand.BuyWeapon,
-                GameCommand.BuyPotion => LocationCommand.BuyPotion,
+                GameCommand.Buyarmor => LocationCommand.Buyarmor,
+                GameCommand.Buyweapon => LocationCommand.Buyweapon,
+                GameCommand.Buypotion => LocationCommand.Buypotion,
 
                 GameCommand.LearnStr => LocationCommand.LearnStr,
                 GameCommand.LearnIntel => LocationCommand.LearnIntel,
@@ -79,7 +79,7 @@ namespace MyBot.Bot
 
                 GameCommand.Attack => LocationCommand.Attack,
                 GameCommand.Defence => LocationCommand.Defence,
-                GameCommand.UsePotion => LocationCommand.UsePotion,
+                GameCommand.Usepotion => LocationCommand.Usepotion,
                 _ => null
             };
             return result != null;

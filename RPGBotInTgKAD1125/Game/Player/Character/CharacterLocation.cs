@@ -20,13 +20,13 @@ namespace MyBot.Game
     
     
 
-    public class CharacterStateMachine
+    public class characterstateMachine
     {
         private CharacterLocation state = CharacterLocation.Home;
         public CharacterLocation CurrentState { get => state; }
         public EventHandler<CharacterLocation> LocationChanged;
 
-        public CharacterStateMachine(CharacterLocation state)
+        public characterstateMachine(CharacterLocation state)
         {
             this.state = state;
         }

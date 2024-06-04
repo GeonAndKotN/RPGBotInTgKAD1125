@@ -2,8 +2,8 @@
 {
     public enum ItemSlot
     {
-        Weapon = 0,
-        Armor = 1,
-        Potion = 2
+        weapon = 0,
+        armor = 1,
+        potion = 2
     }
 }

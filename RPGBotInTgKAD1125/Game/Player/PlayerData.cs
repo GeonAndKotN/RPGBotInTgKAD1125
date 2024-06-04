@@ -16,7 +16,7 @@ namespace MyBot.Game
         {
             Id = data.Id;
             State = data.State;
-            Characters = data.Characters.Select(cd => new CharacterData(cd)).ToList();
+            characters = data.characters.Select(cd => new CharacterData(cd)).ToList();
         }
 
         public override bool Equals(object obj)
@@ -31,6 +31,6 @@ namespace MyBot.Game
 
         public long Id { get; set; }
         public PlayerState State { get; set; } = PlayerState.Greetings;
-        public List<CharacterData> Characters { get; set; } = new List<CharacterData>();
+        public List<CharacterData> characters { get; set; } = new List<CharacterData>();
     }
 }

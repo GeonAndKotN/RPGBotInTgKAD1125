@@ -18,9 +18,9 @@ namespace MyBot
         public static InlineKeyboardButton GoArena => InlineKeyboardButton.WithCallbackData("💥Арена💥", "/GoArena");
 
         //Магаз
-        public static InlineKeyboardButton BuyArmor => InlineKeyboardButton.WithCallbackData("🛡️Броня🛡️", "/BuyArmor");
-        public static InlineKeyboardButton BuyWeapon => InlineKeyboardButton.WithCallbackData("🖋️Оружие✒️", "/BuyWeapon");
-        public static InlineKeyboardButton BuyPotion => InlineKeyboardButton.WithCallbackData("🍼Зелье🍷", "/BuyPotion");
+        public static InlineKeyboardButton Buyarmor => InlineKeyboardButton.WithCallbackData("🛡️Броня🛡️", "/Buyarmor");
+        public static InlineKeyboardButton Buyweapon => InlineKeyboardButton.WithCallbackData("🖋️Оружие✒️", "/Buyweapon");
+        public static InlineKeyboardButton Buypotion => InlineKeyboardButton.WithCallbackData("🍼Зелье🍷", "/Buypotion");
 
 
         //Школа
@@ -33,7 +33,7 @@ namespace MyBot
         //Арена
         public static InlineKeyboardButton Attack => InlineKeyboardButton.WithCallbackData("💥Удар💥", "/Attack");
         public static InlineKeyboardButton Defence => InlineKeyboardButton.WithCallbackData("🛡️Блок🛡️", "/Defence");
-        public static InlineKeyboardButton UsePotion => InlineKeyboardButton.WithCallbackData("🍼Зелье🍷", "/UsePotion");
+        public static InlineKeyboardButton Usepotion => InlineKeyboardButton.WithCallbackData("🍼Зелье🍷", "/Usepotion");
         public static InlineKeyboardButton Run => InlineKeyboardButton.WithCallbackData("СВАЛИТЬ", "/GoHome");
     }
 }

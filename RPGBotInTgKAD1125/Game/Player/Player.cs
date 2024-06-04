@@ -15,9 +15,9 @@ namespace MyBot.Game
         {
             Data = new PlayerData(data);
             StateMachine = new PlayerStateMachine(data.State);
-            if (data.Characters.Any())
+            if (data.characters.Any())
             {
-                SetActiveCharacter(new Character(data.Characters[0]));
+                SetActiveCharacter(new Character(data.characters[0]));
             }
         }
 
@@ -27,16 +27,16 @@ namespace MyBot.Game
 
         public void SetActiveCharacter(Character character)
         {
-            if (!Data.Characters.Contains(character.GetData()))
+            if (!Data.characters.Contains(character.GetData()))
             {
-                Data.Characters.Add(character.GetData());
+                Data.characters.Add(character.GetData());
             }
             ActiveCharacter = character;
         }
 
         public void RemoveCharacter(string name)
         {
-            Data.Characters.Remove(Data.Characters.First(c => c.Name == name));
+            Data.characters.Remove(Data.characters.First(c => c.Name == name));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace MyBot.Game
             var result = new List<InlineKeyboardButton> {
                 Buttons.Attack,
                 Buttons.Defence,
-                Buttons.UsePotion,
+                Buttons.Usepotion,
                 Buttons.Run
             };
             return result;

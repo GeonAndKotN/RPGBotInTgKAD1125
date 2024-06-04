@@ -15,9 +15,9 @@ namespace MyBot.Game
         public override List<InlineKeyboardButton> GetButtons()
         {
             var result = new List<InlineKeyboardButton> {
-                Buttons.BuyArmor,
-                Buttons.BuyWeapon,
-                Buttons.BuyPotion,
+                Buttons.Buyarmor,
+                Buttons.Buyweapon,
+                Buttons.Buypotion,
                 Buttons.GoHome,
             };
             return result;

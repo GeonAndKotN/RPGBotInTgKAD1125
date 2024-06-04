@@ -27,7 +27,7 @@ namespace MyBot.Bot
             }
             if (player.ActiveCharacter == null)
             {
-                var charsData = player.GetData().Characters;
+                var charsData = player.GetData().characters;
                 if (charsData.Count > 0)
                 {
                     player.SetActiveCharacter(new Character(charsData.Last()));
@@ -106,8 +106,8 @@ namespace MyBot.Bot
                 {
                     switch (command)
                     {
-                        case LocationCommand.BuyArmor:
-                            if (character.TryBuyItem(SQLManager.GetItem(character.GetData().Armor.Id + 1, ItemSlot.Armor)))
+                        case LocationCommand.Buyarmor:
+                            if (character.TryBuyItem(SQLManager.GetItem(character.GetData().armor.Id + 1, ItemSlot.armor)))
                             {
                                 Response(args.ClientInfo, "Поздравляю с покупкой наряда");
                                 SQLManager.Save(character.GetData());
@@ -117,8 +117,8 @@ namespace MyBot.Bot
                                 Response(args.ClientInfo, "Извини, но мы живем при капитализме, чтоб одеться, нужны бабки");
                             }
                             break;
-                        case LocationCommand.BuyWeapon:
-                            if (character.TryBuyItem(SQLManager.GetItem(character.GetData().Weapon.Id + 1, ItemSlot.Weapon)))
+                        case LocationCommand.Buyweapon:
+                            if (character.TryBuyItem(SQLManager.GetItem(character.GetData().weapon.Id + 1, ItemSlot.weapon)))
                             {
                                 Response(args.ClientInfo, "Поздравляю с покупкой средства самообороны");
                                 SQLManager.Save(character.GetData());
@@ -128,8 +128,8 @@ namespace MyBot.Bot
                                 Response(args.ClientInfo, "Мы живем при капитализме, чтобы быть в безопасности, нужны бабки");
                             }
                             break;
-                        case LocationCommand.BuyPotion:
-                            if (character.TryBuyItem(SQLManager.GetItem(character.GetData().Potion.Id + 1, ItemSlot.Potion)))
+                        case LocationCommand.Buypotion:
+                            if (character.TryBuyItem(SQLManager.GetItem(character.GetData().potion.Id + 1, ItemSlot.potion)))
                             {
                                 Response(args.ClientInfo, "Поздравляю с покупкой алкоголя");
                                 SQLManager.Save(character.GetData());
@@ -157,7 +157,7 @@ namespace MyBot.Bot
                     switch (command)
                     {
                         case LocationCommand.LearnStr:
-                            if (character.TryLearn(CharacterStat.Str))
+                            if (character.TryLearn(characterstat.Str))
                             {
                                 Response(args.ClientInfo, "Препод бьет тебя палкой по рукам и они становятся сильнее");
                                 SQLManager.Save(character.GetData());
@@ -168,7 +168,7 @@ namespace MyBot.Bot
                             }
                             break;
                         case LocationCommand.LearnAgi:
-                            if (character.TryLearn(CharacterStat.Agi))
+                            if (character.TryLearn(characterstat.Agi))
                             {
                                 Response(args.ClientInfo, "Препод бьет тебя прутиком по ногам и они становится быстрее");
                             }
@@ -178,7 +178,7 @@ namespace MyBot.Bot
                             }
                             break;
                         case LocationCommand.LearnIntel:
-                            if (character.TryLearn(CharacterStat.Intel))
+                            if (character.TryLearn(characterstat.Intel))
                             {
                                 Response(args.ClientInfo, "Препод бьет тебя учебником по голове и она становится умнее");
                             }
@@ -188,7 +188,7 @@ namespace MyBot.Bot
                             }
                             break;
                         case LocationCommand.LearnPhy:
-                            if (character.TryLearn(CharacterStat.Phy))
+                            if (character.TryLearn(characterstat.Phy))
                             {
                                 Response(args.ClientInfo, "Препод бьет тебя доской по жепе и она становится крепче");
                             }
@@ -236,10 +236,10 @@ namespace MyBot.Bot
                         case LocationCommand.Defence:
                             Response(args.ClientInfo, $"{enemy.Name} АТАКУЕТ НО ТЫ БЛОКИРУЕШЬ, ТАК МОЖЕТ ПРОДОЛЖАТЬСЯ БЕСКОНЕЧНО...");
                             break;
-                        case LocationCommand.UsePotion:
-                            if (character.TryUsePotion())
+                        case LocationCommand.Usepotion:
+                            if (character.TryUsepotion())
                             {
-                                Response(args.ClientInfo, $"Ты выпил {character.GetData().Potion.Name}\nВроде полегчало");
+                                Response(args.ClientInfo, $"Ты выпил {character.GetData().potion.Name}\nВроде полегчало");
                             }
                             else
                             {
@@ -297,7 +297,7 @@ namespace MyBot.Bot
                     break;
                 case PlayerState.DeletingChar:
                     DeleteCharacter(args.Text, player);
-                    if (player.GetData().Characters.Count > 0)
+                    if (player.GetData().characters.Count > 0)
                     {
                         Response(args.ClientInfo, "Персонаж успшно удален, вот остальные:", buttons: GenerateCharList(player.GetData()));
                         player.TakeAction(PlayerAction.CharInfo);
@@ -329,10 +329,10 @@ namespace MyBot.Bot
         private void ResumeGame(Character character, RequestEventArgs args)
         {
             var location = character.GetCurrentLocation();
-            var description = $"Твои текущие статы:\nЗдоровье: {character.CurrentHealth} \n{character.GetData()}\n\n{location.Description}";
+            var description = $"Твои текущие статы:\nЗдоровье: {character.CurrentHealth} \n💥Урон: {character.Damage}\n{character.GetData()}\n\n{location.Description}";
             if (location is Arena)
             {
-                description += $"\nТвой текущий противник: {character.CurrentEnemy.Name} \nЕго здоровье: {character.CurrentEnemy.CurrentHealth}";
+                description += $"\nТвой текущий противник: {character.CurrentEnemy.Name} \nЕго здоровье: {character.CurrentEnemy.CurrentHealth}❤️ \nЕго урон: {character.CurrentEnemy.Damage}🔥";
             }
             Response(
                 args.ClientInfo,
@@ -357,9 +357,9 @@ namespace MyBot.Bot
                 Id = id,
                 Name = name,
                 OwnerId = ownerId,
-                Weapon = SQLManager.GetItem(1, ItemSlot.Weapon),
-                Armor = SQLManager.GetItem(1, ItemSlot.Armor),
-                Potion = SQLManager.GetItem(1, ItemSlot.Potion)
+                weapon = SQLManager.GetItem(1, ItemSlot.weapon),
+                armor = SQLManager.GetItem(1, ItemSlot.armor),
+                potion = SQLManager.GetItem(1, ItemSlot.potion)
             };
             SQLManager.CreateNewCharacter(data);
             return new Character(data);
@@ -374,7 +374,7 @@ namespace MyBot.Bot
 
         private CharacterData GetCharacterByName(string name, PlayerData playerData)
         {
-            var data = playerData.Characters.FirstOrDefault(c => c.Name == name);
+            var data = playerData.characters.FirstOrDefault(c => c.Name == name);
             if (data == null)
             {
                 data = SQLManager.GetCharsForUser(playerData.Id).First(c => c.Name == name);
@@ -385,7 +385,7 @@ namespace MyBot.Bot
         private List<InlineKeyboardButton> GenerateCharList(PlayerData playerData)
         {
             var result = new List<InlineKeyboardButton>();
-            foreach (var charData in playerData.Characters)
+            foreach (var charData in playerData.characters)
             {
                 result.Add(InlineKeyboardButton.WithCallbackData(charData.Name, charData.Name));
             }
