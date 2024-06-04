@@ -48,7 +48,7 @@ namespace MyBot.Game
 
         public void UpdateMaxHealth()
         {
-            maxHealth = 3 + Data.Phy * 2 + Data.Armor.Value;
+            maxHealth = 3 + Data.Phy * 2 + Data.Agi + Data.Armor.Value;
         }
 
         public void ResetHP()
@@ -59,7 +59,7 @@ namespace MyBot.Game
 
         public void UpdateDamage()
         {
-            damage = 2 + Data.Str + Data.Weapon.Value;
+            damage = 2 + Data.Str + (Data.Agi / 2) + Data.Weapon.Value;
         }
 
         public bool TryUsePotion()
@@ -91,9 +91,11 @@ namespace MyBot.Game
                 {
                     case ItemSlot.Weapon:
                         Data.Weapon = new ItemData(data);
+                        UpdateDamage();
                         break;
                     case ItemSlot.Armor:
                         Data.Armor = new ItemData(data);
+                        UpdateMaxHealth();
                         break;
                     case ItemSlot.Potion:
                         Data.Potion = new ItemData(data);
@@ -123,12 +125,16 @@ namespace MyBot.Game
                 {
                     case CharacterStat.Str:
                         Data.Str++;
+                        UpdateDamage();
                         break;
                     case CharacterStat.Agi:
                         Data.Agi++;
+                        UpdateDamage();
+                        UpdateMaxHealth();
                         break;
                     case CharacterStat.Phy:
                         Data.Phy++;
+                        UpdateMaxHealth();
                         break;
                     case CharacterStat.Intel:
                         Data.Intel++;

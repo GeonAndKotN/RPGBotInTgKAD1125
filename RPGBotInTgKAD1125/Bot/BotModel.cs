@@ -1,5 +1,6 @@
 ﻿using MyBot.DataBase;
 using MyBot.Game;
+using RPGBotInTgKAD1125.Bot.HideCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,7 @@ namespace MyBot.Bot
                             if (character.TryBuyItem(SQLManager.GetItem(character.GetData().Armor.Id + 1, ItemSlot.Armor)))
                             {
                                 Response(args.ClientInfo, "Поздравляю с покупкой наряда");
+                                SQLManager.Save(character.GetData());
                             }
                             else
                             {
@@ -119,6 +121,7 @@ namespace MyBot.Bot
                             if (character.TryBuyItem(SQLManager.GetItem(character.GetData().Weapon.Id + 1, ItemSlot.Weapon)))
                             {
                                 Response(args.ClientInfo, "Поздравляю с покупкой средства самообороны");
+                                SQLManager.Save(character.GetData());
                             }
                             else
                             {
@@ -129,6 +132,7 @@ namespace MyBot.Bot
                             if (character.TryBuyItem(SQLManager.GetItem(character.GetData().Potion.Id + 1, ItemSlot.Potion)))
                             {
                                 Response(args.ClientInfo, "Поздравляю с покупкой алкоголя");
+                                SQLManager.Save(character.GetData());
                             }
                             else
                             {
@@ -340,7 +344,7 @@ namespace MyBot.Bot
 
         private void CreateNewCharForPlayer(Player player, string name)
         {
-            var charId = player.GetData().Characters.Count + 1;
+            var charId = BotCode.GenerateCharId();
             var character = CreateCharacter(charId, name, player.Id);
             player.SetActiveCharacter(character);
             SQLManager.Save(player.GetData());
